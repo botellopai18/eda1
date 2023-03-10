@@ -1,0 +1,40 @@
+/******************************************************************************
+Nombre: Pancardo Botello Isaac
+Fecha: 08 / 12 / 2022
+Serie C Segundo Parcial
+Ejercicio 20. Ahorro anual banco
+
+PSEUDOCODIGO
+INICIO Ahorro anual banco
+    a, p, r, n, pot: REALES
+    r = 5.0
+    p = 1000.00
+    n = 10
+    pot = 1
+    ESCRIBIR "El monto inicial en el banco es de: $", p);
+    PARA i=1 HASTA i<=n PASO  i++ HACER
+        pot = pot*(1+r)
+        a = p*pot
+        ESCRIBIR "El monto despues de ", i," años es $", a
+    FIN PARA
+FIN
+
+*******************************************************************************/
+
+#include <stdio.h>
+
+int main()
+{
+    double a, p, r, n, pot;
+    r = 5.0;
+    p = 1000.00;
+    n = 10;
+    pot = 1;
+    printf("El monto inicial en el banco es de: $%.2f\n", p);
+    for(int i=1; i<=n; i++){
+        pot *= (1+r);
+        a = p*pot;
+        printf("El monto despues de %d años es $%.2f\n", i, a);
+    }
+    return 0;
+}

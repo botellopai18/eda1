@@ -1,0 +1,42 @@
+/******************************************************************************
+Nombre: Pancardo Botello Isaac
+Fecha: 06 / 12 / 2022
+Serie C Segundo Parcial
+Ejercicio 11. Menor entre 4 enteros
+
+PSEUDOCODIGO
+INICIO Menor entre 4 enteros
+    a[4], min: ENTEROS
+    ESCRIBIR "Ingrese el 1er numero entero: "
+    LEER a[0]
+    min = a[0]
+    PARA i=1 HASTA i<=3 PASO i++ HACER
+        ESCRIBIR "Ingrese otro entero: "
+        LEER a[i]
+        SI a[i]<min ENTONCES
+            min = a[i]
+        FIN SI
+    FIN PARA
+    ESCRIBIR "El menor de los 4 enteros es: ", min
+FIN
+
+*******************************************************************************/
+
+#include <stdio.h>
+
+int main()
+{
+    int a[4], min;
+    printf("Ingrese el 1er numero entero: ");
+    scanf("%d", &a[0]);
+    min = a[0];
+    for(int i=1; i<=3; i++){
+        printf("Ingrese otro numero entero: ");
+        scanf("%d", &a[i]);
+        if(a[i]<min){
+            min = a[i];
+        }   
+    }
+    printf("El menor de los 4 enteros es: %d", min);
+    return 0;
+}

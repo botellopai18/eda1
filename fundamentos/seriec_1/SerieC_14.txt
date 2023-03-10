@@ -1,0 +1,47 @@
+/******************************************************************************
+Nombre: Pancardo Botello Isaac
+Fecha: 06 / 12 / 2022
+Serie C Segundo Parcial
+Ejercicio 14. Numero es primo o no
+
+PSEUDOCODIGO
+INICIO Numero es primo o no
+    n, primo: ENTEROS
+    ESCRIBIR "Ingrese el numero para evaluar si es primo o no: "
+    LEER n
+    primo = 1
+    PARA i=2 HASTA i<n PASO i+1 HACER
+        SI n%i==0 ENTONCES
+            primo = 0
+        ENTONCES
+    FIN PARA
+    SI primo==0 OR n<2 ENTONCES
+        ESCRIBIR n," NO es primo"
+    FIN SI
+    DE LO CONTRARIO
+        ESCRIBIR n, " SI es primo"
+    FIN DE LO CONTRARIO
+FIN
+
+*******************************************************************************/
+
+#include <stdio.h>
+
+int main()
+{
+    int n, primo;
+    printf("Ingrese el numero para evaluar si es primo o no: ");
+    scanf("%d", &n);
+    primo = 1;
+    for(int i=2; i<n; i++){
+        if(n%i==0){
+            primo = 0;
+        }    
+    }
+    if(primo==0 || n<2){
+        printf("%d NO es primo", n);
+    }else{
+        printf("%d SI es primo", n);
+    }
+    return 0;
+}

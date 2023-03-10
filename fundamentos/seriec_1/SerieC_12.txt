@@ -1,0 +1,53 @@
+/******************************************************************************
+Nombre: Pancardo Botello Isaac
+Fecha: 06 / 12 / 2022
+Serie C Segundo Parcial
+Ejercicio 12. Orden creciente
+
+PSEUDOCODIGO
+INICIO Orden creciente
+    a[5]: REALES
+    orden: ENTEROS
+    ESCRIBIR "Ingrese el 1er numero: "
+    LEER a[0]
+    orden = 1
+    PARA i=1 HASTA i<=4 PASO i+1 HACER
+        ESCRIBIR "Ingrese otro numero: "
+        LEER a[i]
+        SI a[i]<a[i-1] ENTONCES
+            orden = 0
+        FIN SI
+    FIN PARA
+    SI orden==0 ENTONCES
+        ESCRIBIR "NO estan ordenados en orden creciente"
+    FIN SI
+    DE LO CONTRARIO
+        ESCRIBIR "SI estan ordenados en orden creciente"
+    FIN DE LO CONTRARIO
+FIN
+
+*******************************************************************************/
+
+#include <stdio.h>
+
+int main()
+{
+    float a[5];
+    int orden;
+    printf("Ingrese el 1er numero: ");
+    scanf("%f", &a[0]);
+    orden = 1;
+    for(int i=1; i<=4; i++){
+        printf("Ingrese otro numero: ");
+        scanf("%f", &a[i]);
+        if(a[i]<a[i-1]){
+            orden = 0;
+        }   
+    }
+    if(orden==0){
+        printf("NO estan ordenados en orden creciente");
+    }else{
+        printf("SI estan ordenados en orden creciente");
+    }
+    return 0;
+}

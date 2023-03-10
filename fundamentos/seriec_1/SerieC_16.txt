@@ -1,0 +1,58 @@
+/******************************************************************************
+Nombre: Pancardo Botello Isaac
+Fecha: 06 / 12 / 2022
+Serie C Segundo Parcial
+Ejercicio 16. Maximo y minimo de N numeros
+
+PSEUDOCODIGO
+INICIO Maximo y minimo de N numeros
+    n: ENTEROS
+    a, max, min: REALES
+    ESCRIBIR "Ingrese la cantidad de numeros a ingresar: "
+    LEER n
+    ESCRIBIR "Ingrese el valor del primer numero: "
+    LEER a
+    max = a
+    min = a
+    PARA i=1 HASTA i<n PASO i+1 HACER
+        ESCRIBIR "Ingrese el valor del numero ", i+1
+        LEER a
+        SI a>max ENTONCES
+            max = a
+        FIN SI 
+        SI a<min ENTONCES
+            min = a
+        FIN SI
+    FIN PARA
+    ESCRIBIR "El menor numero ingresado es: ", min
+    ESCRIBIR "El mayor numero ingresado es: ", max
+FIN
+
+*******************************************************************************/
+
+#include <stdio.h>
+
+int main()
+{
+    int n;
+    float a, max, min;
+    printf("Ingrese la cantidad de numeros a ingresar: ");
+    scanf("%d", &n);
+    printf("Ingrese el valor del primer numero: ");
+    scanf("%f", &a);
+    max = a;
+    min = a;
+    for(int i=1; i<n; i++){
+        printf("Ingrese el valor del numero %d: ", i+1);
+        scanf("%f", &a);
+        if(a>max){
+            max = a;
+        }
+        if(a<min){
+            min = a;
+        }
+    }
+    printf("El menor numero ingresado es: %f\n", min);
+    printf("El mayor numero ingresado es: %f\n", max);
+    return 0;
+}

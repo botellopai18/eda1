@@ -1,0 +1,33 @@
+/******************************************************************************
+Nombre: Pancardo Botello Isaac
+Fecha: 06 / 12 / 2022
+Serie C Segundo Parcial
+Ejercicio 19. Suma impares menores a n
+
+PSEUDOCODIGO
+INICIO Suma impares menores a n
+    n, i=-1, sum=0: ENTEROS
+    ESCRIBIR "Ingrese el valor de n: "
+    LEER n
+    MIENTRAS i+2<=n HACER
+        i = i+2
+        sum = sum + i
+    FIN MIENTRAS
+    ESCRIBIR "La suma de los impares menores o iguales a n es: ", sum
+FIN
+*******************************************************************************/
+
+#include <stdio.h>
+
+int main()
+{
+    int n, i=-1, sum=0;
+    printf("Ingrese el valor de n: ");
+    scanf("%d", &n);
+    while(i+2<=n){
+        i = i+2;
+        sum = sum + i;
+    }
+    printf("La suma de los impares menores o iguales a n es: %d", sum);
+    return 0;
+}

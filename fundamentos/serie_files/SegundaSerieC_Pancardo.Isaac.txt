@@ -1,0 +1,389 @@
+/******************************************************************************
+ - Nombre: Pancardo Botello Isaac
+ - No. Cuenta: 423079803
+ - Problema 1. Leer un archivo de una columna de numeros y escribir en otro archivo en forma de tabla el eemento, valor leido y su histograma
+ - Variables de entrada: 
+	- nameIn, nameOut (char): que son los nombres de los archivos a leer y a escribir
+	- archR (FILE): El archivo del que leeremos con los numeros escritos en columna
+ - Variables de salida: 
+	- archW (FILE): El archivo en el que escribiremos los histogramas
+*******************************************************************************/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main()
+{
+    char nameIn[30], nameOut[30], valChar[30];
+    int cnt, num, val, pot10, i, j;
+    FILE *archR, *archW;
+    
+    printf("Ingrese el nombre del archivo a leer: ");
+    scanf("%s", nameIn);
+    archR = fopen(nameIn, "r");
+    if(archR == NULL){
+         // Si hay un error al abrir el archivo, fopen devuelve NULL
+        fprintf(stderr, "Error al abrir el archivo\n");
+        return 1;
+    }
+    
+    printf("Ingrese el nombre del archivo de salida: ");
+    scanf("%s", nameOut);
+    archW = fopen(nameOut, "w");
+    if(archW==NULL)
+	{
+		printf("\n No se puede crear el archivo de salida.");
+		exit(EXIT_FAILURE);
+	}
+	
+	fprintf(archW, "Elemento  Valor  Histograma\n");
+    cnt = 0;
+    do{
+        fscanf(archR, "%s", valChar);
+        val = 0;
+        pot10 = 1;
+        for(i=strlen(valChar)-1; i>=0; i--){
+            num = 48; // 48 es el valor en la tabla ASCII del 0
+            while(valChar[i] != num){
+                num++;
+            }
+            val += (num-48)*pot10;
+            pot10 *= 10;
+        }
+        fprintf(archW, "%d%5d", cnt, val);
+        for(j=0; j<val; j++){
+            fprintf(archW, "*");
+        }
+        fprintf(archW, "\n");
+        cnt++;
+    }while(!feof(archR));
+    printf("Se creo el archivo %s correctamente", nameOut);
+    fclose(archR);
+    fclose(archW);
+    return 0;
+}
+
+/******************************************************************************
+ - Nombre: Pancardo Botello Isaac
+ - No. Cuenta: 423079803
+ - Problema 2. Leer un archivo con 100 valores y escribir en archivos distintos 
+ las medidas estadisticas solicitadas
+ - Variables de entrada: 
+	- nameIn (char): Nombre del archivo que contiene los valores a leer
+	- datos (FILE): El archivo del que leeremos con los 100 valores
+ - Variables de salida: 
+	- moda (int): Guardara el valor de la moda a obtener
+	- media, mediana (float): guardara el valor de las estadisticas a obtener que pueden tener decimales
+*******************************************************************************/
+
+#include <stdio.h>
+#include <string.h>
+
+int convert(char numChar[]);
+float calcularMedia(int arr[], int n);
+float calcularMediana(int arr[], int n);
+int calcularModa(int arr[], int n);
+int main(){
+    char nameIn[30], num[30];
+    int valores[100], cnt, save, moda, i, j;
+    float media, mediana;
+    FILE *datos;
+    printf("Ingrese el nombre del archivo a leer: ");
+    scanf("%s", nameIn);
+    datos = fopen(nameIn, "r");
+    if(datos == NULL){
+         // Si hay un error al abrir el archivo, fopen devuelve NULL
+        fprintf(stderr, "Error al abrir el archivo\n");
+        return 1;
+    } // arch = NULL
+
+    cnt = 0;
+    printf("Valores leidos sin ordenar: \n");
+    do{
+        fscanf(datos, "%s", num);
+        valores[cnt] = convert(num);
+        printf("valor leido %d: %d\n", cnt+1, valores[cnt]);
+        cnt++;
+    }while(!feof(datos)); // leer datos
+    
+    printf("Valores leidos ordenados: \n");
+    for(i=0; i<100; i++){
+        for(j=99; j>i; j--){
+            if(valores[j-1]>valores[j]){
+                save = valores[j-1];
+                valores[j-1] = valores[j];
+                valores[j] = save;
+            }
+        }
+        printf("valor ordenado %d: %d\n", i+1, valores[i]);
+    } // ordenar valores
+
+    media = calcularMedia(valores, 100);
+    mediana = calcularMediana(valores, 100);
+    moda = calcularModa(valores, 100);
+    printf("media = %.0f\n", media);
+    printf("mediana = %.0f\n", mediana);
+    printf("moda = %d\n", moda);    
+    fclose(datos);
+    return 0;
+}//main
+
+int convert(char numChar[]){
+    int x, pot10, num, digASCII;
+    x = strlen(numChar);
+    num = 0;
+    pot10 = 1;
+    for(int i=x-1; i>=0; i--){
+        digASCII = 48; //Posicion del 0 en ASCII
+        while(numChar[i] != digASCII){
+            digASCII++;
+        }
+        num += pot10*(digASCII-48);
+        pot10*=10;
+    }
+    return num;
+} // convertir
+
+float calcularMedia(int arr[]){
+    long long sum=0;
+    float med;
+    for(int i=0; i<100; i++){
+        sum += arr[i];
+    }
+    med = sum/100.0;
+    return med;
+} // calcular media
+
+float calcularMediana(int arr[], int n){
+    float med;
+    if(n%2==0){
+        med = (arr[(n/2)-1] + arr[n/2])/2.0;   
+    }else{
+        med = arr[(n-1)/2];
+    }
+    return med;
+} // calcular mediana
+int calcularModa(int arr[], int n){
+    int cont, rep, mod, max;
+    cont = 0;
+    max = 0;
+    while(cont<n-1){
+        rep = 1;
+        while(arr[cont] == arr[cont+1]){
+            rep++;
+            cont++;
+        }
+        if(rep > max){
+            mod = arr[cont];
+            max = rep;
+        }
+        cont++;
+    }
+    return mod;
+} // calcular moda
+
+
+/******************************************************************************
+ - Nombre: Pancardo Botello Isaac
+ - No. Cuenta: 423079803
+ - Problema 3. Hacer un programa que reciba los comandos de movimiento para simular los movimientos de 
+ una tortuga en un tablero
+ - Variables de entrada: 
+	- c (int): almacenara el comando que vaya solicitando el usuario
+	- p (int): almacenara la cantidad de pasos que avanzara la tortuga cuando se ingrese el comando 5
+ - Variables de salida: 
+	- arch (FILE): representara el archivo del tablero final despues de realizar los comandos sugeridos
+*******************************************************************************/
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+int main(){
+    int piso[50][50];
+    int pos[2], pluma, dir, sent, p, c, i, j;
+    char k;
+    FILE *arch;
+    for(i=0; i<50; i++){
+        for(j=0; j<50; j++){
+            piso[i][j] = 0;
+        }
+    }
+    c = 0;
+    pluma = 0; // 0 arriba, 1 abajo
+    dir = 0; // 0 derecha, 1 abajo, 2 izq, 3 arriba
+    sent = 1; // 1 derecha o abajo, -1 arriba o izq
+    pos[0] = 0; //columna actual
+    pos[1] = 0; //fila actual
+    printf("Ingrese uno a uno, alguno de los siguientes comandos: \n");
+    printf("1. Pluma arriba\n");
+    printf("2. Pluma abajo\n");
+    printf("3. Vuelta a la derecha\n");
+    printf("4. Vuelta a la izquierda\n");
+    printf("5, pasos. La tortuga avanzara los pasos indicados\n");
+    printf("6. Despliega el tablero de 50 por 50 en pantalla\n");
+    printf("9. Fin de datos e impresion del tablero a un archivo de texto\n");
+
+    while(c!=9){
+        printf("Ingrese un comando: ");
+        scanf("%d%c", &c, &k);
+        switch(c){
+            case 1:
+                pluma = 0;
+                break;
+            case 2:
+                pluma = 1;
+                break;
+            case 3:
+                dir = (dir+1)%4;
+                if(dir>=2){sent = -1;}
+                else{sent = 1;}
+                break;
+            case 4:
+                dir = (dir+3)%4;
+                if(dir>=2){sent = -1;}
+                else{sent = 1;}
+                break;
+            case 5:
+                scanf(" %d", &p);
+                for(i=0; i<p; i++){
+                    pos[dir%2] += sent;
+                    piso[pos[1]][pos[0]] += pluma;
+                }
+                break;
+            case 6:
+                for(i=0; i<50; i++){
+                    for(j=0; j<50; j++){
+                        if(piso[i][j] != 0){
+                        printf("$");
+                        }else{
+                            printf("_");
+                        }
+                    }
+                    printf("\n");
+                }
+                break;
+            case 9:
+                printf("Tablero impreso en el archivo\nFin del programa");
+                arch = fopen("TableroFinal.txt", "w");
+                if(arch == NULL){
+                    printf("No se pudo crear el archivo\n");
+                    exit(1);
+                }
+                for(i=0; i<50; i++){
+                    for(j=0; j<50; j++){
+                        if(piso[i][j] != 0){
+                            fprintf(arch, "$");
+                        }else{
+                            fprintf(arch, "_");
+                        }
+                    }
+                    fprintf(arch, "\n");
+                }
+            default:
+                break;
+        }
+    }
+    fclose(arch);
+    return(0);
+}
+
+
+/******************************************************************************
+ - Nombre: Pancardo Botello Isaac
+ - No. Cuenta: 423079803
+ - Problema 4. Encontrar los numeros primos entre el 2 y 999 utilizando el metodo del cedazo
+ de Aristotenes
+ - Variables de entrada: 
+        - n[1000] (int): el arreglo que contenia los unos y ceros
+ - Variables de salida: 
+        - arch (FILE): el documento de texto en el que se escribieron los primos
+        encontrados
+*******************************************************************************/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(){
+    int n[1000], cnt, i, j;
+    FILE *arch;
+    for(i=0; i<1000; i++){
+        n[i] = 1;
+    }
+    n[0] = 0;
+    n[1] = 0;
+    for(j=2; j<1000; j++){
+        if(n[j] == 1){
+            cnt = 2;
+            while(j*cnt<1000){
+                n[j*cnt] = 0;
+                cnt++;
+            }
+        }
+    }
+    arch = fopen("primos.txt", "w");
+    if(arch == NULL){
+        printf("No se pudo abrir el archivo");
+        exit(1);
+    }
+
+    for(i=0; i<1000; i++){
+        if(n[i] == 1){
+            fprintf(arch, "%d\n", i);
+        }
+    }
+    printf("Los primos entre el 2 y 999 fueron impresos en 'primos.txt'");
+    fclose(arch);
+}
+
+
+/******************************************************************************
+ - Nombre: Pancardo Botello Isaac
+ - No. Cuenta: 423079803
+ - Problema 5. Leer un archivo binario de cuentas de alumnos y encontras la posicion
+ en bytes en las que esta mi numero de cuenta
+ - Variables de entrada: 
+	- FILE(arch): Sera el apuntador del archivo binario a leer
+	- mine(int): almacenara el numero de cuenta a buscar
+ - Variables de salida: 
+	- posF (int): almacenara el tamaño en bytes del archivo
+	- cta (int): almacenara las cuentas leidas del archivo
+*******************************************************************************/
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int main()
+{
+    FILE *arch;
+    int pos=0, posF, mine, cta, cont;
+    char c[10];
+    arch=fopen("cuentas.bin","rb");
+    if (arch==NULL)
+        exit(1);
+    fseek(arch,0,SEEK_END);
+    posF=ftell(arch);
+    printf("Ingresar el numero de cuenta a buscar: ");
+    scanf("%d", &mine);
+    fseek(arch,0,SEEK_SET);
+    cont = 0;
+    fread(&cta, sizeof(int), 1, arch);
+    fread(&cta, sizeof(int), 1, arch);
+    fseek(arch,0,SEEK_SET);
+    mine = 423079803;
+    while(!feof(arch)){
+        pos = ftell(arch);
+        cta=0;
+        fread(&cta, sizeof(int), 1, arch);
+        fread(&cta, sizeof(int), 1, arch);
+        if(mine == cta){
+            printf("%i\n", pos);
+            cont += 1;
+        }
+    }
+    printf("Numero de cuentas encontradas: %i\n", cont);
+    printf("El tamaño del archivo \"cuentas.bin\" es de %i bytes\n",posF);
+    fclose(arch);
+    return 0;
+}

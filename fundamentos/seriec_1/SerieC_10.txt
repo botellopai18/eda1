@@ -1,0 +1,42 @@
+/******************************************************************************
+Nombre: Pancardo Botello Isaac
+Fecha: 06 / 12 / 2022
+Serie C Segundo Parcial
+Ejercicio 10. Mayor entre 4 numeros
+
+PSEUDOCODIGO
+INICIO 
+    a[4], max: REALES
+    ESCRIBIR "Ingrese el 1er numero: "
+    LEER a[0]
+    max = a[0]
+    PARA i=1 HASTA i<=3 PASO i++ HACER
+        ESCRIBIR "Ingrese otro numero: "
+        LEER a[i]
+        SI a[i]>max ENTONCES
+            max = a[i]
+        FIN SI
+    FIN PARA
+    ESCRIBIR "El mayor de los 4 numeros es: ", max
+FIN
+
+*******************************************************************************/
+
+#include <stdio.h>
+
+int main()
+{
+    float a[4], max;
+    printf("Ingrese el 1er numero: ");
+    scanf("%f", &a[0]);
+    max = a[0];
+    for(int i=1; i<=3; i++){
+        printf("Ingrese otro numero: ");
+        scanf("%f", &a[i]);
+        if(a[i]>max){
+            max = a[i];
+        }   
+    }
+    printf("El mayor de los 4 numeros es: %f", max);
+    return 0;
+}

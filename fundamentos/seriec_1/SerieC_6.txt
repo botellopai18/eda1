@@ -1,0 +1,45 @@
+/******************************************************************************
+Nombre: Pancardo Botello Isaac
+Fecha: 05 / 12 / 2022
+Serie C Segundo Parcial
+Ejercicio 6. Conversiones de monedas
+
+PSEUDOCODIGO
+INICIO Conversiones de monedas
+    s: ENTERO
+    m, f[6]: REALES
+    tipI[6], tipF[6]: ALFANUMERICO
+    f[6] = {19.74, 1.0/19.74, 1.0/20.69, 20.69, 1.0/1.05, 1.05}
+    tipI[6] = {"dolares", "pesos", "pesos", "euros", "dolares", "euros"}
+    tipF[6] = {"pesos", "dolares", "euros", "pesos", "euros", "dolares"}
+    ESCRIBIR "Menu de conversiones: "
+    PARA i=0 HASTA i<6 PASO i+1 HACER
+        ESCRIBIR i+1, ". ", tipI[i], " a ", tipF[i]
+    FIN PARA
+    ESCRIBIR "Seleccione la conversion a realizar: "
+    LEER s
+    ESCRIBIR "Ingrese el monto a convertir: "
+    LEER m
+    ESCRIBIR m, " ", tipI[s-1], " = ", m*f[s-1], " ", tipF[s-1]
+FIN
+*******************************************************************************/
+
+#include <stdio.h>
+
+int main()
+{
+    int s;
+    float m;
+    float f[6] = {19.74, 1.0/19.74, 1.0/20.69, 20.69, 1.0/1.05, 1.05};
+    char tipI[][50] = {"dolares", "pesos", "pesos", "euros", "dolares", "euros"};
+    char tipF[][50] = {"pesos", "dolares", "euros", "pesos", "euros", "dolares"};
+    printf("Menu de conversiones: \n");
+    for(int i=0; i<6; i++){
+        printf("%d. %s a %s\n", i+1, tipI[i], tipF[i]);
+    }
+    printf("Seleccione la conversion a realizar: ");
+    scanf("%d", &s);
+    printf("Ingrese el monto a convertir: ");
+    scanf("%f", &m);
+    printf("%f %s = %f %s", m, tipI[s-1], m*f[s-1], tipF[s-1]);
+}

@@ -1,0 +1,57 @@
+/******************************************************************************
+Nombre: Pancardo Botello Isaac
+Fecha: 06 / 12 / 2022
+Serie C Segundo Parcial
+Ejercicio 15_3. Media pares, media impares (ciclo do-while)
+
+PSEUDOCODIGO
+INICIO Media pares, media impares (ciclo do-while)
+    n, a, sumP=0, contP=0, contI=0, sumI=0: ENTEROS
+    mediaP, mediaI: REALES
+    ESCRIBIR "Ingresar el numero de enteros a ingresar: "
+    LEER n
+    HACER
+        ESCRIBIR "Ingresar el valor del entero numero ", contP+contI+1
+        LEER a
+        SI a%2==0 ENTONCES
+            sumP = sumP + a
+            contP = contP +1
+        FIN SI 
+        DE LO CONTRARIO
+            sumI = sumI + a
+            contI = contI + 1
+        FIN DE LO CONTRARIO
+    MIENTRAS contI + contP < n 
+    mediaP = sumP/contP
+    mediaI = sumI/sumI
+    ESCRIBIR "La media de los pares ingresados: ", mediaP
+    ESCRIBIR "La media de los impares ingresados: ", mediaI
+FIN
+
+*******************************************************************************/
+
+#include <stdio.h>
+
+int main()
+{
+    int n, a, sumP=0, contP=0, contI=0, sumI=0;
+    float mediaP, mediaI;
+    printf("Ingresar el numero de enteros a ingresar: ");
+    scanf("%d", &n);
+    do{
+        printf("Ingresar el valor del entero numero %d: ", contP+contI+1);
+        scanf("%d", &a);
+        if(a%2==0){
+            sumP+=a;
+            contP++;
+        }else{
+            sumI+=a;
+            contI++;
+        }
+    }while(contP+contI<n);
+    mediaP = sumP/contP;
+    mediaI = sumI/sumI;
+    printf("La media de los pares ingresados: %f\n", mediaP);
+    printf("La media de los impares ingresados: %f", mediaI);
+    return 0;
+}

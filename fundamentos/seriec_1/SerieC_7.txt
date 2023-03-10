@@ -1,0 +1,72 @@
+/******************************************************************************
+Nombre: Pancardo Botello Isaac
+Fecha: 08 / 12 / 2022
+Serie C Segundo Parcial
+Ejercicio 8. Calificacion no numerica (switch)
+
+PSEUDOCODIGO
+INICIO Calificacion no numerica (swicth)
+
+    c: REALES
+    cal: ENTEROS
+    ESCRIBIR "Ingrese la calificacion obtenida en el examen: "
+    LEER c
+    cal = c/1
+    SELECCIONAR cal en:
+        caso 0:
+        caso 1:
+        caso 2:
+        caso 3:
+        caso 4:
+            ESCRIBIR "No aprobado"
+        caso 5:
+        caso 6:
+            ESCRIBIR "Aprobado"
+        caso 7:
+        caso 8:
+            ESCRIBIR "Notable"
+        caso 9:
+            ESCRIBIR "Sobresaliente"
+        caso 10:
+            ESCRIBIR "Excelente"
+    FIN SELECCIONAR
+FIN
+
+*******************************************************************************/
+
+#include <stdio.h>
+
+int main()
+{
+    float c;
+    int cal;
+    printf("Ingrese la calificacion obtenida en el examen: ");
+    scanf("%f", &c);
+    cal = c/1;
+    switch(cal){
+        case 0:
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+            printf("No aprobdo");
+            break;
+        case 5:
+        case 6:
+            printf("Aprobdo");
+            break;
+        case 7:
+        case 8:
+            printf("Notable");
+            break;
+        case 9:
+            printf("Sobresaliente");
+            break;
+        case 10:
+            printf("Excelente");
+            break;
+        default:
+            break;
+    }
+    return 0;
+}

@@ -1,0 +1,57 @@
+/******************************************************************************
+Nombre: Pancardo Botello Isaac
+Fecha: 06 / 12 / 2022
+Serie C Segundo Parcial
+Ejercicio 9. Calificacion no numerica con error
+
+PSEUDOCODIGO
+INICIO Calificacion no numerica con error
+
+    c: REALES
+    ESCRIBIR "Ingrese la calificacion obtenida en el examen: "
+    LEER c
+    SI c>=0 Y c<5 ENTONCES
+        ESCRIBIR "No aprobado"
+    FIN SI
+    DE LO CONTRARIO SI c<7 ENTONCES
+        ESCRIBIR "Aprobado"
+    FIN SI
+    DE LO CONTRARIO SI c<9 ENTONCES
+        ESCRIBIR "Notable"
+    FIN SI
+    DE LO CONTRARIO SI c<10 ENTONCES
+        ESCRIBIR "Sobresaliente"
+    FIN SI
+    DE LO CONTRARIO SI c==10 ENTONCES
+        ESCRIBIR "Excelente"
+    FIN SI
+    DE LO CONTRARIO
+        ESCRIBIR "Calificacion no valida"
+    FIN DE LO CONTRARIO
+FIN
+
+*******************************************************************************/
+
+#include <stdio.h>
+
+int main()
+{
+    float c;
+    printf("Ingrese la calificacion obtenida en el examen: ");
+    scanf("%f", &c);
+    if(c>=0 && c<5){
+        printf("No aprobado");
+    }else if(c<7){
+        printf("Aprobado");
+    }else if(c<9){
+        printf("Notable");
+    }else if(c<10){
+        printf("Sobresaliente");
+    }else if(c==10){
+        printf("Excelente");
+    }else{
+        printf("Calificacion no valida");
+    }
+    
+    return 0;
+}

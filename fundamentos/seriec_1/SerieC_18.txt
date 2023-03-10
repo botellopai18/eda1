@@ -1,0 +1,71 @@
+/******************************************************************************
+Nombre: Pancardo Botello Isaac
+Fecha: 06 / 12 / 2022
+Serie C Segundo Parcial
+Ejercicio 18. Salario fabrica diario
+
+PSEUDOCODIGO
+INICIO Salario fabrica diario
+    n, hd, hn, s[7]: ENTEROS
+    ESCRIBIR "Dias de la semana:"
+    ESCRIBIR "1. Lunes"
+    ESCRIBIR "2. Martes"
+    ESCRIBIR "3. Miercoles"
+    ESCRIBIR "4. Jueves"
+    ESCRIBIR "5. Viernes"
+    ESCRIBIR "6. Sabado"
+    ESCRIBIR "7. Domingo"
+    
+    PARA i=0 HASTA i<6 PASO i+1 HACER
+        ESCRIBIR "Ingrese horas diurnas trabajadas dia ", i+1
+        LEER hd
+        ESCRIBIR "Ingrese horas nocturnas trabajadas dia ", i+1
+        LEER hn
+        s[i] = 5*hd + 8*hn
+    FIN PARA
+    ESCRIBIR "Ingrese horas diurnas trabajadas dia 7: "
+    LEER hd
+    ESCRIBIR "Ingrese horas nocturnas trabajadas dia 7: "
+    LEER hn
+    s<[6] = 7*hd + 11*hn
+    
+    PARA i=0 HASTA i<7 PASO i+1 HACER
+        ESCRIBIR "Pago dia ", i+1, ": ", s[i], "".00"
+    FIN PARA
+    
+FIN
+*******************************************************************************/
+
+#include <stdio.h>
+
+int main()
+{
+    int n, hd, hn, s[7];
+    printf("Dias de la semana:\n");
+    printf("1. Lunes\n");
+    printf("2. Martes\n");
+    printf("3. Miercoles\n");
+    printf("4. Jueves\n");
+    printf("5. Viernes\n");
+    printf("6. Sabado\n");
+    printf("7. Domingo\n");
+    
+    for(int i=0; i<6; i++){
+        printf("Ingrese horas diurnas trabajadas dia %d: ", i+1);
+        scanf("%d", &hd);
+        printf("Ingrese horas nocturnas trabajadas dia %d: ", i+1);
+        scanf("%d", &hn);    
+        s[i] = 5*hd + 8*hn;
+    }
+    printf("Ingrese horas diurnas trabajadas dia 7: ");
+    scanf("%d", &hd);
+    printf("Ingrese horas nocturnas trabajadas dia 7: ");
+    scanf("%d", &hn);
+    s<[6] = 7*hd + 11*hn;
+    
+    for(int i=0; i<7; i++){
+        printf("Pago dia %d: $%d.00\n", i+1, s[i]);
+    }
+    
+    return 0;
+}

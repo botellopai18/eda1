@@ -1,0 +1,39 @@
+/******************************************************************************
+Nombre: Pancardo Botello Isaac
+Fecha: 06 / 12 / 2022
+Serie C Segundo Parcial
+Ejercicio 17. Media de las notas de alumnos
+
+PSEUDOCODIGO
+INICIO Media de las notas de alumnos
+    n=0: ENTEROS
+    c=0, sum=0: REALES
+    MIENTRAS c!=-1 HACER
+        ESCRIBIR "Ingrese el valor de la nota numero ", n+1, " (-1 para terminar): "
+        LEER c
+        n = n+1
+        sum = sum+c
+    FIN MIENTRAS
+    sum = sum+1
+    n = n-1
+    ESCRIBIR "La media de las notas ingresadas es: ", sum/n
+FIN
+*******************************************************************************/
+
+#include <stdio.h>
+
+int main()
+{
+    int n=0;
+    float c=0, sum=0;
+    while(c!=-1){
+        printf("Ingrese el valor de la nota numero %d, (-1 para terminar): ", n+1);
+        scanf("%f", &c);
+        n = n+1;
+        sum = sum+c;
+    }
+    sum = sum+1;
+    n = n-1;
+    printf("La media de las notas ingresadas es: %f", sum/n);
+    return 0;
+}
