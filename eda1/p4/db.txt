@@ -1,0 +1,5 @@
+WhiteHoodie 13.5 100
+BlackHoodie 14.65 200
+RedHoodie 43.76 33
+GreenHoodie 45.43 22
+OrangeHoodie 100.32 32
